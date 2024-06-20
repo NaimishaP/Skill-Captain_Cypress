@@ -1,0 +1,26 @@
+describe('Cypress Actions', () => {
+    beforeEach(() => {
+        cy.visit('https://example.cypress.io/commands/actions');
+    });
+    it('passed', () => {
+        
+        //click
+        cy.get('#action-canvas').click('topLeft');
+        cy.get('.well > .btn-danger').click();
+        cy.get('#action-canvas').click(80, 75);
+        //Doubleclick()
+        cy.get(':nth-child(20) > .well').dblclick();
+        //rightclick()
+        cy.get(':nth-child(23) > .well').rightclick();
+        //check
+        //cy.get('.action-checkboxes > :nth-child(1) > label > input').click();
+
+        cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]').check()
+        cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]').should('be.checked')
+        //uncheck
+        cy.get('.action-check [type="checkbox"]').not('[disabled]').uncheck()
+        cy.get('.action-check [type="checkbox"]').not('[disabled]').should('not.be.checked')
+        //select
+        cy.get('.action-select').select('apples')
+        });
+})

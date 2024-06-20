@@ -1,0 +1,22 @@
+describe('Cypress Actions', () => {
+    beforeEach(() => {
+        cy.visit('https://example.cypress.io/commands/actions');
+    });
+    it('passed', () => {
+        
+        cy.get('#email1').type('hello@skillcaptain.app');
+        cy.get('#email1').should('has.value', 'hello@skillcaptain.app');
+        cy.get(':nth-child(2) > .form-control').type('hello, i am disabled text area',{force: true});
+        //focus
+        cy.get('.action-focus').focus()
+        cy.get('.action-focus').should('have.class', 'focus')
+        .prev().should('have.attr', 'style', 'color: orange;')
+        //blur
+        cy.get('.action-blur').type('About to blur')
+        cy.get('.action-blur').blur()
+        cy.get('.action-blur').should('have.class', 'error')
+        .prev().should('have.attr', 'style', 'color: red;')
+        //clear
+        cy.get('#email1').clear();
+        });
+})
